@@ -1,0 +1,1582 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/21/2024 5:36:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CAMTC"
+  DTS:CreatorName="CAMTC\mma"
+  DTS:DTSID="{BF9ADD99-2AED-4468-A620-D877F348DC08}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="010 Data Migration"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{D3D9C78B-4911-49E5-B832-F9141389E9E8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Account_Addresses - Create"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C953875E-5958-4CE9-A9A7-2A84F59C69DB}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Account_Addresses - Create">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Account_Addresses - Create\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{4DD3B561-35FD-4F98-9D0C-07D186F9E6B5}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TaskName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TaskName]"
+                          name="TaskName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"vw_Account_Addresses"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"vw_Account_Addresses"</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Error_Log"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Error_Log]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Connections[OleDbConnection]"
+                      connectionManagerID="{B61C9C82-A044-4B44-B82B-B880938955FD}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SQL DB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="TaskName"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TaskName]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorCode]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorColumn]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[ErrorMessage]"
+                          cachedDataType="wstr"
+                          cachedLength="2048"
+                          cachedName="ErrorMessage"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorMessage]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[OldId]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="OldId"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[Id1]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[OldId]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].Columns[Account__c]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="Account__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[Id2]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Account__c]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[Id1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Id1" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[Id2]"
+                          dataType="wstr"
+                          length="255"
+                          name="Id2" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                          dataType="wstr"
+                          length="255"
+                          name="TaskName" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                          dataType="i4"
+                          name="ErrorCode" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                          dataType="i4"
+                          name="ErrorColumn" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          dataType="wstr"
+                          length="2048"
+                          name="ErrorMessage" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="KingswaySoft Inc.; http://www.kingswaysoft.com; support@kingswaysoft.com; Copyright (c) 2023 KingswaySoft Inc."
+                  description="Populate data into Salesforce."
+                  name="Salesforce Destination"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how data is written to Salesforce."
+                      expressionType="Notify"
+                      name="ActionType"
+                      typeConverter="KingswaySoft.IntegrationToolkit.Salesforce.SalesforceDestinationActionType">1</property>
+                    <property
+                      dataType="System.String"
+                      description="Destination object to write data."
+                      expressionType="Notify"
+                      name="DestinationObject">Account_Address__c</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Batch size"
+                      expressionType="Notify"
+                      name="BatchSize">200</property>
+                    <property
+                      dataType="System.String"
+                      description="Specify the External ID field to be used for Salesforce upsert action."
+                      expressionType="Notify"
+                      name="UpsertExternalIdField"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specify whether you wan to use Salesforce Bulk API to load data."
+                      expressionType="Notify"
+                      name="UseBulkApi">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Bulk data format to use when Salesforce Bulk API is used."
+                      expressionType="Notify"
+                      name="BulkDataFormat"
+                      typeConverter="KingswaySoft.IntegrationToolkit.Common.DescriptiveEnumTypeConverter`1[[KingswaySoft.IntegrationToolkit.Salesforce.BulkDataFormat">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Concurrency mode when Salesforce Bulk API is used."
+                      expressionType="Notify"
+                      name="ConcurrencyMode"
+                      typeConverter="KingswaySoft.IntegrationToolkit.Salesforce.ConcurrencyMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specify whether to remove those invalid characters before writing to Salesforce."
+                      expressionType="Notify"
+                      name="RemoveInvalidCharacters">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When true, datetime values should be sent to Salesforce in UTC format. The default is false, in which case, datetime values will be posted to Salesforce in local system time. "
+                      expressionType="Notify"
+                      name="SendDateTimeInUtcFormat">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specify whether to ignore those NULL-valued fields."
+                      expressionType="Notify"
+                      name="IgnoreNullValuedFields">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specify whether to send empty strings as NULLs when writing to Salesforce. When disabled, empty strings will not be converted to NULL value, therefore will not be posted to Salesforce. This can be helpful in the case that you want to retain original values in Salesforce when the incoming value is empty (not NULL though). "
+                      expressionType="Notify"
+                      name="SendEmptyStringsAsNullValues">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specify whether to write batch files withUTF-8 encoding when using Bulk API to write to Salesforce."
+                      expressionType="Notify"
+                      name="WriteBatchFilesWithUtf8Encoding">false</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">KingswaySoft.IntegrationToolkit.Salesforce.SalesforceDestinationComponent</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Connections[Salesforce]"
+                      connectionManagerID="{5B46C896-1E4B-4D4A-BBC0-69E7282D72B7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SF]"
+                      description="Salesforce Connection"
+                      name="Salesforce" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="RedirectRow"
+                      hasSideEffects="true"
+                      name="Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Account__c]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="Account__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Account__c]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Account__c]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="338"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Name]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Phone__c]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Phone__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Phone__c]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Phone__c]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Address__City__s]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Address__City__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__City__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__City__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Address__PostalCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Address__PostalCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__PostalCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__PostalCode__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Address__Street__s]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Address__Street__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__Street__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__Street__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Address__CountryCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Address__CountryCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__CountryCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__CountryCode__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].Columns[Address__StateCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Address__StateCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__StateCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__StateCode__s]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Account__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="Account__c">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">reference</property>
+                            <property
+                              dataType="System.String"
+                              isArray="true"
+                              name="LookupTypes">
+                              <arrayElements
+                                arrayElementCount="1">
+                                <arrayElement
+                                  dataType="System.String">Account</arrayElement>
+                              </arrayElements>
+                            </property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__City__s]"
+                          dataType="wstr"
+                          length="40"
+                          name="Address__City__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">string</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__CountryCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__CountryCode__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">picklist</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__GeocodeAccuracy__s]"
+                          dataType="wstr"
+                          length="80"
+                          name="Address__GeocodeAccuracy__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">picklist</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__Latitude__s]"
+                          dataType="numeric"
+                          name="Address__Latitude__s"
+                          precision="33"
+                          scale="15">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">double</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__Longitude__s]"
+                          dataType="numeric"
+                          name="Address__Longitude__s"
+                          precision="33"
+                          scale="15">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">double</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__PostalCode__s]"
+                          dataType="wstr"
+                          length="20"
+                          name="Address__PostalCode__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">string</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__StateCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__StateCode__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">picklist</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Address__Street__s]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address__Street__s">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">textarea</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Attention__c]"
+                          dataType="wstr"
+                          length="100"
+                          name="Attention__c">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">string</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[CurrencyIsoCode]"
+                          dataType="wstr"
+                          length="50"
+                          name="CurrencyIsoCode">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">picklist</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">string</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[OwnerId]"
+                          dataType="wstr"
+                          length="18"
+                          name="OwnerId">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">reference</property>
+                            <property
+                              dataType="System.String"
+                              isArray="true"
+                              name="LookupTypes">
+                              <arrayElements
+                                arrayElementCount="2">
+                                <arrayElement
+                                  dataType="System.String">Group</arrayElement>
+                                <arrayElement
+                                  dataType="System.String">User</arrayElement>
+                              </arrayElements>
+                            </property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input].ExternalColumns[Phone__c]"
+                          dataType="wstr"
+                          length="40"
+                          name="Phone__c">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              name="FieldType">phone</property>
+                            <property
+                              dataType="System.Null"
+                              name="LookupTypes" />
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Error Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorMessage]"
+                          dataType="wstr"
+                          length="2048"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output].Columns[ErrorMessage]"
+                          name="ErrorMessage" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output]"
+                      exclusionGroup="1"
+                      name="Default Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[SalesforceRecordId]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[SalesforceRecordId]"
+                          name="SalesforceRecordId" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[IsNew]"
+                          dataType="bool"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[IsNew]"
+                          name="IsNew" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="succ_Account_Addresses"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[succ_Account_Addresses]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Connections[OleDbConnection]"
+                      connectionManagerID="{B61C9C82-A044-4B44-B82B-B880938955FD}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SQL DB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[OldId]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="OldId"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[OldId]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[OldId]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Account__c]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="Account__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Account__c]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Account__c]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="338"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Address__City__s]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Address__City__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__City__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__City__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Address__CountryCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Address__CountryCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__CountryCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__CountryCode__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Address__PostalCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Address__PostalCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__PostalCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__PostalCode__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Address__StateCode__s]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Address__StateCode__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__StateCode__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__StateCode__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Address__Street__s]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Address__Street__s"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__Street__s]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__Street__s]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Phone__c]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="Phone__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Phone__c]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Phone__c]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[ShippingCity]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="ShippingCity"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCity]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[ShippingCity]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[Hierarchy_Status__c]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Hierarchy_Status__c"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Hierarchy_Status__c]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Hierarchy_Status__c]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="TaskName"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TaskName]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[SalesforceRecordId]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="SalesforceRecordId"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[SalesforceRecordId]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[SalesforceRecordId]" />
+                        <inputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].Columns[IsNew]"
+                          cachedDataType="bool"
+                          cachedName="IsNew"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[IsNew]"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output].Columns[IsNew]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[OldId]"
+                          dataType="wstr"
+                          length="18"
+                          name="OldId" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Account__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="Account__c" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="338"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__City__s]"
+                          dataType="wstr"
+                          length="40"
+                          name="Address__City__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__CountryCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__CountryCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__PostalCode__s]"
+                          dataType="wstr"
+                          length="20"
+                          name="Address__PostalCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__StateCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__StateCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Address__Street__s]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address__Street__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Phone__c]"
+                          dataType="wstr"
+                          length="40"
+                          name="Phone__c" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCity]"
+                          dataType="wstr"
+                          length="40"
+                          name="ShippingCity" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[Hierarchy_Status__c]"
+                          dataType="wstr"
+                          length="255"
+                          name="Hierarchy_Status__c" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                          dataType="wstr"
+                          length="20"
+                          name="TaskName" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[SalesforceRecordId]"
+                          dataType="wstr"
+                          length="18"
+                          name="SalesforceRecordId" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input].ExternalColumns[IsNew]"
+                          dataType="bool"
+                          name="IsNew" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="vw_Account_Addresses"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * 
+	from vw_Account_Addresses</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Connections[OleDbConnection]"
+                      connectionManagerID="{B61C9C82-A044-4B44-B82B-B880938955FD}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SQL DB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[OldId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[OldId]"
+                          length="18"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[OldId]"
+                          name="OldId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Account__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Account__c]"
+                          length="18"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Account__c]"
+                          name="Account__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="338"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__City__s]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__City__s]"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__City__s]"
+                          name="Address__City__s"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__CountryCode__s]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__CountryCode__s]"
+                          length="50"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__CountryCode__s]"
+                          name="Address__CountryCode__s"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__PostalCode__s]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__PostalCode__s]"
+                          length="20"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__PostalCode__s]"
+                          name="Address__PostalCode__s"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__StateCode__s]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__StateCode__s]"
+                          length="50"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__StateCode__s]"
+                          name="Address__StateCode__s"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__Street__s]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__Street__s]"
+                          length="255"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Address__Street__s]"
+                          name="Address__Street__s"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Phone__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Phone__c]"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Phone__c]"
+                          name="Phone__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[ShippingCity]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[ShippingCity]"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[ShippingCity]"
+                          name="ShippingCity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Hierarchy_Status__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Hierarchy_Status__c]"
+                          length="255"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].Columns[Hierarchy_Status__c]"
+                          name="Hierarchy_Status__c"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[OldId]"
+                          dataType="wstr"
+                          length="18"
+                          name="OldId" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Account__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="Account__c" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="338"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__City__s]"
+                          dataType="wstr"
+                          length="40"
+                          name="Address__City__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__CountryCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__CountryCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__PostalCode__s]"
+                          dataType="wstr"
+                          length="20"
+                          name="Address__PostalCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__StateCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          name="Address__StateCode__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Address__Street__s]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address__Street__s" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Phone__c]"
+                          dataType="wstr"
+                          length="40"
+                          name="Phone__c" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[ShippingCity]"
+                          dataType="wstr"
+                          length="40"
+                          name="ShippingCity" />
+                        <externalMetadataColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output].ExternalColumns[Hierarchy_Status__c]"
+                          dataType="wstr"
+                          length="255"
+                          name="Hierarchy_Status__c" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[OldId]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[OldId]"
+                          name="OldId" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Account__c]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Account__c]"
+                          name="Account__c" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="338"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__City__s]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__City__s]"
+                          name="Address__City__s" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__CountryCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__CountryCode__s]"
+                          name="Address__CountryCode__s" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__PostalCode__s]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__PostalCode__s]"
+                          name="Address__PostalCode__s" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__StateCode__s]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__StateCode__s]"
+                          name="Address__StateCode__s" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__Street__s]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Address__Street__s]"
+                          name="Address__Street__s" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Phone__c]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Phone__c]"
+                          name="Phone__c" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ShippingCity]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ShippingCity]"
+                          name="ShippingCity" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Hierarchy_Status__c]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[Hierarchy_Status__c]"
+                          name="Hierarchy_Status__c" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Account_Addresses - Create\Data Flow Task.Paths[Default Output]"
+                  endId="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses.Inputs[OLE DB Destination Input]"
+                  name="Default Output"
+                  startId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Default Output]" />
+                <path
+                  refId="Package\Account_Addresses - Create\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Inputs[Input]"
+                  name="Derived Column Output"
+                  startId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Account_Addresses - Create\Data Flow Task.Paths[Error Output]"
+                  endId="Package\Account_Addresses - Create\Data Flow Task\Error_Log.Inputs[OLE DB Destination Input]"
+                  name="Error Output"
+                  startId="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination.Outputs[Error Output]" />
+                <path
+                  refId="Package\Account_Addresses - Create\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Account_Addresses - Create\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Account_Addresses - Create\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2D741832-CBDA-4640-9616-4494ABB98B4B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B61C9C82-A044-4B44-B82B-B880938955FD}"
+              SQLTask:SqlStatementSource="delete Error_Log where taskname='vw_Account_Addresses'&#xA;truncate table succ_Account_Addresses" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Account_Addresses - Create.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{24CAE80B-BA6D-4404-8810-BE185F1DB887}"
+          DTS:From="Package\Account_Addresses - Create\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Account_Addresses - Create\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Execute SQL Task"
+          TopLeft="35.0833298501871,16.5614068571991" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task"
+          TopLeft="306.333325808247,23.4035122491427" />
+        <EdgeLayout
+          Id="Package\Account_Addresses - Create.PrecedenceConstraints[Constraint]"
+          TopLeft="203.083329850187,41.3157928865042">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.24999595806,0"
+              Start="0,0"
+              End="95.74999595806,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.74999595806,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="526,121.333333333334"
+          Size="526,164"
+          Id="Package\Account_Addresses - Create"
+          TopLeft="198.749997038394,118.368423280624" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Account_Addresses - Create\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="126.666666666667,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task\Error_Log"
+          TopLeft="454.999993219972,283.947373765658" />
+        <NodeLayout
+          Size="186.666666666667,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task\Salesforce Destination"
+          TopLeft="288.74999569729,192.947372052808" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task\Derived Column"
+          TopLeft="304.374995464459,108.789475731903" />
+        <EdgeLayout
+          Id="Package\Account_Addresses - Create\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="382.229162247541,151.456142398569">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.491229654239"
+              Start="0,0"
+              End="0,33.991229654239">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.991229654239" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Account_Addresses - Create\Data Flow Task.Paths[Error Output]"
+          TopLeft="411.861106808401,235.614038719475">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106.472219744904,48.3333350461827"
+              Start="0,0"
+              End="106.472219744904,40.8333350461827">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5797929507199" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5797929507199"
+                    Point2="0,19.5797929507199"
+                    Point3="4,19.5797929507199" />
+                  <mssgle:LineSegment
+                    End="102.472219744904,19.5797929507199" />
+                  <mssgle:CubicBezierSegment
+                    Point1="102.472219744904,19.5797929507199"
+                    Point2="106.472219744904,19.5797929507199"
+                    Point3="106.472219744904,23.5797929507199" />
+                  <mssgle:LineSegment
+                    End="106.472219744904,40.8333350461827" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="24.8997231537021,24.5797929507199,56.6727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="193.333333333334,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses"
+          TopLeft="292.49999564141,27.3684215677742" />
+        <EdgeLayout
+          Id="Package\Account_Addresses - Create\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="385.770828886268,70.0350882344409">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.7543874974617"
+              Start="0,0"
+              End="0,31.2543874974617">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.2543874974617" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses"
+          TopLeft="157.499997653067,279.157899991297" />
+        <EdgeLayout
+          Id="Package\Account_Addresses - Create\Data Flow Task.Paths[Default Output]"
+          TopLeft="352.305551252845,235.614038719475">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93.4722202664448,43.5438612718222"
+              Start="0,0"
+              End="-93.4722202664448,36.0438612718222">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.6395811951008" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.6395811951008"
+                    Point2="0,17.6395811951008"
+                    Point3="-4,17.6395811951008" />
+                  <mssgle:LineSegment
+                    End="-89.4722202664448,17.6395811951008" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89.4722202664448,17.6395811951008"
+                    Point2="-93.4722202664448,17.6395811951008"
+                    Point3="-93.4722202664448,21.6395811951008" />
+                  <mssgle:LineSegment
+                    End="-93.4722202664448,36.0438612718222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Account_Addresses - Create\Data Flow Task\Error_Log">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Account_Addresses - Create\Data Flow Task\vw_Account_Addresses">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Account_Addresses - Create\Data Flow Task\succ_Account_Addresses">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

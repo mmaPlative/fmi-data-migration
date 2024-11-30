@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.34829.251
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "FMI Data Migration", "FMI Data Migration\FMI Data Migration.dtproj", "{ACAC5473-B6F7-4CC2-B834-FBA9DD2B7E88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACAC5473-B6F7-4CC2-B834-FBA9DD2B7E88}.Development|Default.ActiveCfg = Development
+		{ACAC5473-B6F7-4CC2-B834-FBA9DD2B7E88}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D19DF954-3D49-4666-B7CC-06C777A0A3AF}
+	EndGlobalSection
+EndGlobal
