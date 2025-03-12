@@ -4,6 +4,11 @@ go
 /*
 
 drop table sf_Accounts
+drop table SF_Contacts
+drop table SF_Opportunities
+drop table SF_Addresses
+drop table SF_Deltek
+drop table SF_Engagements
 
 */
 
@@ -21,15 +26,19 @@ drop table succ_Account_Addresses
 */
 
 
-select * from vw_Account_Addresses
+select distinct Account__c from vw_Account_Addresses
 
 
 --***** SSIS
 select * 
 	from vw_Account_Addresses
 
+	where OldId = '0010a00001IIGiIAAX'
+
 
 select * from Error_Log
+
+delete from Error_Log where TaskName='vw_Account_Addresses'
 
 
 select err.ErrorMessage
@@ -87,7 +96,7 @@ delete Error_Log where taskname='vw_Contact'
 */
 
 
-select * from vw_Contact
+select * from vw_Contact where AccountId='001j000000N0FsxAAF'
 
 
 --***** SSIS
@@ -118,17 +127,22 @@ delete Error_Log where taskname='vw_Oppo'
 
 */
 
+select * from SF_Opportunities where Engagement_Account__c is not null
 
-select * from vw_Oppo
+
+select * from vw_Oppo where AccountId='001j000000N0FsxAAF'
 
 
 --***** SSIS
 select * 
 	from vw_Oppo
 
+	where id in ('006j000000WpQRgAAN','006j000000YYsIfAAL','0060a00000n8xiRAAQ')
+
 
 select * from Error_Log
 
+delete from Error_Log where TaskName='vw_Oppo'
 
 select err.ErrorMessage
 	, rec.* 
@@ -268,4 +282,76 @@ select err.ErrorMessage
 	from Error_Log err
 	left join vw_Oppo_Reseller rec on rec.id = err.Id1
 	where TaskName='vw_Oppo_Reseller'
+
+
+
+
+
+
+
+
+
+/* vw_Deltek
+
+delete Error_Log where taskname='vw_Deltek'
+
+
+
+
+*/
+
+
+select * from vw_Deltek where Account_Name__c='001j000000N0FsxAAF'
+
+
+--***** SSIS
+select * 
+	from vw_Deltek
+
+
+select * from Error_Log
+
+
+select err.ErrorMessage
+	, rec.* 
+	from Error_Log err
+	left join vw_Deltek rec on rec.id = err.Id1
+	where TaskName='vw_Deltek'
+
+
+
+
+
+
+
+
+
+
+/* vw_Engagements
+
+delete Error_Log where taskname='vw_Engagements'
+
+
+
+
+*/
+
+
+select * from vw_Engagements where AccountId__c='001j000000N0FsxAAF'
+
+
+--***** SSIS
+select * 
+	from vw_Engagements
+
+
+select * from Error_Log
+
+
+select err.ErrorMessage
+	, rec.* 
+	from Error_Log err
+	left join vw_Engagements rec on rec.id = err.Id1
+	where TaskName='vw_Engagements'
+
 
